@@ -1,7 +1,7 @@
 # Multiple languages
-gems:             ['jekyll-multiple-languages']
+#gems:             ['jekyll-multiple-languages']
 
-languages:        ['es', 'en']
+#languages:        ['es', 'en']
 
 fill_default_content: false
 
@@ -15,7 +15,7 @@ title_en: Civio - Annual report 2015
 email: raul@civio.es
 description: Civio - Informe de Gestión 2015
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://2014.civio.es" # the base hostname & protocol for your site
+url: "http://localhost:4000" # "http://2014.civio.es" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown

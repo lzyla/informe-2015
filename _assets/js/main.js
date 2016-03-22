@@ -122,6 +122,48 @@ $(window).load(function (){
       //console.log('scroll', $(window).scrollTop());
     }
 
+    // Setup Cuentas 2015 Charts
+    var setupCharts = function(){
+      var tooltipValueFormat = function (value, ratio, id, index) { return value.toLocaleString('es-ES') + '€'; };
+      c3.generate({
+        bindto: '#chart-incomes',
+        data: {
+            columns: [
+                ['Apoyos institucionales y premios', 135012],
+                ['Prestación de servicios profesionales', 71594],
+                ['Donaciones de particulares', 19712],
+            ],
+            type : 'pie'
+        },
+        size: {
+          height: 360
+        },
+        tooltip: {
+          format: {
+            value: tooltipValueFormat
+          }
+        }
+      });
+      c3.generate({
+        bindto: '#chart-expenses',
+        data: {
+            columns: [
+                ['Costes laborales', 139136],
+                ['Otros gastos', 36741],
+            ],
+            type : 'pie'
+        },
+        size: {
+          height: 340
+        },
+        tooltip: {
+          format: {
+            value: tooltipValueFormat
+          }
+        }
+      });
+    }
+
     setupNavigationMenu();
     $( window ).resize( onResizeHandler );
     $( window ).scroll( onScrollHandler );
@@ -157,4 +199,6 @@ $(window).load(function (){
             }
         }
     });
+
+    setupCharts();
 });
