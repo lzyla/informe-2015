@@ -124,41 +124,65 @@ $(window).load(function (){
 
     // Setup Cuentas 2015 Charts
     var setupCharts = function(){
-      var tooltipValueFormat = function (value, ratio, id, index) { return value.toLocaleString('es-ES') + '€'; };
+
+      // Get lang code from url
+      var pathArray = window.location.pathname.split( '/' );
+      var lang = (pathArray[1] == 'en') ? 'en' : 'es'
+
+      var data_incomes = {
+        'es' : [
+          ['Apoyos institucionales y premios', 135012],
+          ['Prestación de servicios profesionales', 71594],
+          ['Donaciones de particulares', 19712],
+        ],
+        'en' : [
+          ['Institutional support', 135012],
+          ['Professional service delivery', 71594],
+          ['Private donations', 19712],
+        ]
+      };
+
+      var data_expenses = {
+        'es' : [
+          ['Costes laborales', 139136],
+          ['Otros gastos', 36741],
+        ],
+        'en' : [
+          ['Labour costs', 139136],
+          ['Other expenses', 36741],
+        ]
+      }
+
+      var tooltipValueFormatEs = function (value, ratio, id, index) { return value.toLocaleString('es-ES') + '€'; };
+      var tooltipValueFormatEn = function (value, ratio, id, index) { return '€' + value.toLocaleString('en'); };
+     
       c3.generate({
         bindto: '#chart-incomes',
         data: {
-            columns: [
-                ['Apoyos institucionales y premios', 135012],
-                ['Prestación de servicios profesionales', 71594],
-                ['Donaciones de particulares', 19712],
-            ],
-            type : 'pie'
+          columns: data_incomes[lang],
+          type : 'pie'
         },
         size: {
           height: 360
         },
         tooltip: {
           format: {
-            value: tooltipValueFormat
+            value: (lang == 'en') ? tooltipValueFormatEn : tooltipValueFormatEs
           }
         }
       });
       c3.generate({
         bindto: '#chart-expenses',
         data: {
-            columns: [
-                ['Costes laborales', 139136],
-                ['Otros gastos', 36741],
-            ],
-            type : 'pie'
+          columns: data_expenses[lang],
+          type : 'pie'
         },
         size: {
           height: 340
         },
         tooltip: {
           format: {
-            value: tooltipValueFormat
+            value: (lang == 'en') ? tooltipValueFormatEn : tooltipValueFormatEs
           }
         }
       });
